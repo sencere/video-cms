@@ -24,7 +24,7 @@
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>
-            
+
             <ul class="nav navbar-nav">
                 &nbsp;
             </ul>
