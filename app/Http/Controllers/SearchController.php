@@ -14,9 +14,8 @@ class SearchController extends Controller
         if (!$request->q) {
             return redirect('/');
         }
-
-        $channels = Channel::search($request->q)->take(2)->get();
-        $videos = Video::search($request->q)->where('visible', true)->get();
+        $channels = Channel::where('name', 'like', $request->q)->orWhere('description', 'like', $request->q)->get();
+        $videos = Video::where('title', 'like', $request->q)->orWhere('description', 'like', $request->q)->get();
 
         return view('search.index', [
             'channels' => $channels,

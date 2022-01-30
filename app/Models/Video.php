@@ -9,7 +9,7 @@ use App\Traits\Orderable;
 
 class Video extends Model
 {
-    use SoftDeletes, Searchable, Orderable;
+    use SoftDeletes, Orderable; //, //Searchable;
 
     protected $fillable = [
         'title',
@@ -54,11 +54,12 @@ class Video extends Model
 
     public function getThumbnail()
     {
-        if (!$this->isProcessed()) {
-            return config('codetube.buckets.videos') . '/default.png';
-        }
-
-        return config('codetube.buckets.videos') . '/' . $this->video_id . '_1.jpg';
+        // if (!$this->isProcessed()) {
+            // return config('codetube.buckets.videos') . '/default.png';
+        // }
+// 
+        // return config('codetube.buckets.videos') . '/' . $this->video_id . '_1.jpg';
+        return '/medium/' . '1_' . $this->video_filename;
     }
 
     public function votesAllowed()
@@ -101,7 +102,7 @@ class Video extends Model
 
     public function getStreamUrl()
     {
-        return config('codetube.buckets.videos') . '/' . $this->video_id . '.mp4';
+        return '/medium/' . $this->video_filename;
     }
 
     public function views()

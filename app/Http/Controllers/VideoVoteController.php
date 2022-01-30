@@ -13,7 +13,9 @@ class VideoVoteController extends Controller
     {
         $this->authorize('vote', $video);
 
-        $video->voteFromUser($request->user())->delete();
+        if ($video->voteFromUser($request->user())->count() > 0) {
+            $video->voteFromUser($request->user())->first()->delete();
+        }
 
         $video->votes()->create([
             'type' => $request->type,
@@ -26,8 +28,7 @@ class VideoVoteController extends Controller
     public function remove(Request $request, Video $video)
     {
         $this->authorize('vote', $video);
-
-        $video->voteFromUser($request->user())->delete();
+        $video->voteFromUser($request->user())->first()->delete();
 
         return response()->json(null, 200);
     }

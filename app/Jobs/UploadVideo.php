@@ -33,9 +33,8 @@ class UploadVideo implements ShouldQueue
     public function handle()
     {
         $file = storage_path() . '/uploads/' . $this->filename;
-
-        if (Storage::disk('s3drop')->put($this->filename, fopen($file, 'r+'))) {
-            File::delete($file);
-        }
+        // if (Storage::disk('s3drop')->put($this->filename, fopen($file, 'r+'))) {
+            // File::delete($file);
+        // }
     }
 }

@@ -29,7 +29,6 @@ class VideoController extends Controller
     public function edit(Video $video)
     {
         $this->authorize('edit', $video);
-        
         return view('video.edit', [
             'video' => $video,
         ]);
@@ -38,7 +37,6 @@ class VideoController extends Controller
     public function update(VideoUpdateRequest $request, Video $video)
     {
         $this->authorize('update', $video);
-
         $video->update([
             'title' => $request->title,
             'description' => $request->description,
@@ -57,7 +55,6 @@ class VideoController extends Controller
     public function store(VideoCreateRequest $request)
     {
         $uid = uniqid(true);
-
         $channel = $request->user()->channel()->first();
 
         $video = $channel->videos()->create([
@@ -78,7 +75,6 @@ class VideoController extends Controller
     public function delete(Video $video)
     {
         $this->authorize('delete', $video);
-        
         $video->delete();
 
         return redirect()->back();

@@ -16,7 +16,7 @@
         <ul class="list-inline">
             <li><a href="/channel/{{ $video->channel->slug }}">{{ $video->channel->name }}</a></li>
             <li>{{ $video->created_at->diffForHumans() }}</li>
-            <li>{{ $video->viewCount() }} {{ str_plural('view', $video->viewCount()) }}</li>
+            <li>{{ $video->viewCount() }}</li>
         </ul>
     </div>
 </div>

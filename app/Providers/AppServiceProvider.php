@@ -15,8 +15,10 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.partials._navigation', function ($view) {
             $user = \Auth::user();
-            $channel = \App\Models\Channel::where('user_id', $user->id)->get();
-            $view->with('channel', $channel->first());
+            if (!is_null($user)) {
+                $channel = \App\Models\Channel::where('user_id', $user->id)->get();
+                $view->with('channel', $channel->first());
+            }
         });
     }
 

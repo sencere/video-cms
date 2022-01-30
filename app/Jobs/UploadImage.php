@@ -37,17 +37,17 @@ class UploadImage implements ShouldQueue
      */
     public function handle()
     {
-        $path = storage_path() . '/uploads/' . $this->fileId;
-        $fileName = $this->fileId . '.png';
+        $fileName = $this->fileId;
+        $path = storage_path() . '/uploads/' . $fileName;
 
         Image::make($path)->encode('png')->fit(40, 40, function ($c) {
             $c->upsize();
         })->save();
 
-        if (Storage::disk('s3images')->put('profile/' . $fileName, fopen($path, 'r+'))) {
-            File::delete($path);
-        }
-        
+        // if (Storage::disk('s3images')->put('profile/' . $fileName, fopen($path, 'r+'))) {
+            // File::delete($path);
+        // }
+
         $this->channel->image_filename = $fileName;
         $this->channel->save();
     }

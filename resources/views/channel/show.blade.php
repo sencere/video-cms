@@ -18,7 +18,7 @@
                                         <subscribe-button channel-slug="{{ $channel->slug }}"></subscribe-button>
                                     </li>
                                     <li>
-                                        {{ $channel->totalVideoViews() }} video {{ str_plural('view', $channel->totalVideoViews()) }}
+                                        {{ $channel->totalVideoViews() }} videos
                                     </li>
                                 </ul>
 

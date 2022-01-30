@@ -28,7 +28,7 @@
                                                             <span>{{ $video->created_at->toDateTimeString() }}</span>
                                                         @endif
                                                     </p>
-                                                    
+
                                                     <form action="/videos/{{ $video->uid }}" method="post">
                                                         <a href="/videos/{{ $video->uid }}/edit" class="btn btn-default">Edit</a>
 

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                
+
                 @if ($video->isPrivate() && Auth::check() && $video->ownedByUser(Auth::user()))
                     <div class="alert alert-info">
                         Your video is currently private. Only you can see it.
@@ -32,12 +32,12 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h4>{{ $video->title }}</h4>
-                        
+
                         <div class="pull-right">
                             <div class="video__views">
-                                {{ $video->viewCount() }} {{ str_plural('view', $video->viewCount()) }}
+                                {{ $video->viewCount() }}
                             </div>
-                            
+
                             @if ($video->votesAllowed())
                                 <video-voting video-uid="{{ $video->uid }}"></video-voting>
                             @endif
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 @if ($video->description)
                     <div class="panel panel-default">
                         <div class="panel-body">
